@@ -79,7 +79,7 @@
 # Destinations for installation. $(PRESERVEDIR) is used for recovery files.
 # It will get mode 1777.
 #
-PREFIX		= /usr/local
+PREFIX		= /usr
 BINDIR		= $(PREFIX)/bin
 LIBEXECDIR	= $(PREFIX)/libexec
 MANDIR		= $(PREFIX)/share/man
@@ -89,12 +89,12 @@ PRESERVEDIR	= /var/preserve
 # DESTDIR is prepended to the installation paths. It is mostly useful
 # for package building and should be left empty otherwise.
 #
-DESTDIR		=
+DESTDIR		= ./inst
 
 #
 # A BSD-like install program. GNU install will fit well here, too.
 #
-INSTALL		= /usr/ucb/install
+INSTALL		= /usr/bin/install
 
 #
 # Compiler and linker flags.
@@ -106,6 +106,7 @@ INSTALL		= /usr/ucb/install
 #LDFLAGS	=
 #LDADD	=
 
+FEATURES =
 #
 # All of the following settings are quite recommended, so you should only
 # change them if it becomes really necessary.
@@ -130,7 +131,11 @@ INSTALL		= /usr/ucb/install
 #
 # If your system expands tabs to 4 spaces you should -DTABS=4 below
 #
-FEATURES	= -DLISPCODE -DCHDIR -DFASTTAG -DUCVISUAL -DMB -DBIT8
+FEATURES	= -DLISPCODE -DCHDIR -DFASTTAG -DUCVISUAL
+#FEATURES += -DTABS=4
+FEATURES += -DMB
+FEATURES += -DBIT8
+FEATURES += -DNO_BE_BACKSLASH
 
 #
 # This disables the LC_CTYPE locale settings and assumes all characters
@@ -183,6 +188,7 @@ RETGT	= uxre
 #      hacks in Unix history. Do not define VFORK unless you have a
 #      special good reason for that.
 #
+#OSTYPE	= -DVFORK
 OSTYPE	= -DVMUNIX
 
 #
